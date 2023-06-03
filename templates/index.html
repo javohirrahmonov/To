@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  </head>
+  <body>
+    <div class="container">
+        <div class="head">
+            <h1>To-Do List</h1>
+            <div style="display: flex; align-items: center;">
+                <h3>User</h3>
+                <a href="/logout/" style="text-decoration: none; color: red;">
+                Log out
+                </a>
+            </div>
+      </div>
+
+      <div class="task-add">
+        <form id="task-form" method="post">{% csrf_token %}
+            <div class="form1">
+              <input type="text" name="s" placeholder="Add Task...">
+              <input type="date" name="v">
+              <select name="h">
+                <option class="opt">
+                  Not started
+                </option>
+                <option class="opt">
+                  In progress
+                </option>
+                <option class="opt">
+                  Completed
+                </option>
+              </select>
+            </div>
+            <div class="form1">
+              <input type="text" name="b" placeholder="Details ...">
+              <button type="submit" >Add Task</button>
+            </div>
+          </form>
+      </div>
+      <hr style="margin: 10px 5px;">
+      {% for plan in plans %}
+      <div class="task">
+        <ul id="task-list">
+          <li>
+              <div>
+                  {{plan.sarlavha}}
+              </div>
+              <div>
+                    {{plan.holat}}
+                    {{plan.vaqt}}
+                    <button type="submit" class="edit"><a href="./edit.html">Edit</a></button>
+                    <button type="submit" class="delete"><a href="/plan_ochir/{{plan.id}}/">Delete</a></button>
+              </div>
+          </li>
+        </ul>
+        <ul class="details"> 
+            {{plan.batafsil}}
+        </ul>
+      </div>
+      {%endfor%}
+        <ul class="details"> 
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime molestiae molestias explicabo recusandae a perspiciatis beatae dolorem vitae. Reprehenderit, numquam? 
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
